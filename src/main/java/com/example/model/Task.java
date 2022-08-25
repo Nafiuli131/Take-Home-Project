@@ -22,4 +22,9 @@ public class Task {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "schedule_id")
     private Schedule schedule;
+
+    public Task(int t_id, String t_name) {
+        this.t_id = t_id;
+        this.t_name = t_name;
+    }
 }
