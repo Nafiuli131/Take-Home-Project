@@ -27,22 +27,27 @@ public class MainController {
     AssignTaskService assignTaskService;
     @Autowired
     GetTaskListService getTaskListService;
+    //api for create player
     @PostMapping("/createPlayer")
     public Player createPlayer(@RequestBody Player player){
         return playerService.addPlayer(player);
     }
+    //api for create task with schedule id
     @PostMapping("/createTask")
     public Schedule createTask(@RequestBody Schedule schedule){
         return createTaskService.createTask(schedule);
     }
+    //api for create the assign task api. multiplayer players can enroll one task
     @PostMapping("/assignTask")
     public String assignTask(@RequestBody AssignTaskDto assignTaskDto) throws Exception {
         return assignTaskService.assignTask(assignTaskDto);
     }
+    //api for get the task list of a single player
     @GetMapping("/taskList/{player_id}")
     public List<String> taskList(@PathVariable int player_id){
         return assignTaskService.taskList(player_id);
     }
+    //api for get all the task with the given time range
     @PostMapping("/getTaskByRange")
     public List<TimeRangeTaskDto> getTaskList(@RequestBody TimeRangeDto timeRangeDto){
         return getTaskListService.getTaskList(timeRangeDto);
